@@ -7,30 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.DialogFragment
 
 import bonch.dev.school.R
 
-class ProfileFragment : Fragment() {
+class PasswordFragment : DialogFragment() {
 
     lateinit var changePasswordButton: Button
-    lateinit var passwordFragment: PasswordFragment
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.profile_fragment, container, false)
+        val view : View = inflater.inflate(R.layout.password_fragment, null)
         changePasswordButton = view.findViewById(R.id.change_password_button)
-        passwordFragment = PasswordFragment()
-        changePasswordButton.setOnClickListener {
-            passwordFragment.show(
-                fragmentManager,
-                "passwordFragment"
-            )
-        }
+        changePasswordButton.setOnClickListener { dismiss() }
 
         return view
     }
+
 
 }
