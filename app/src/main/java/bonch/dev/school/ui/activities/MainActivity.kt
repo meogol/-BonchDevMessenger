@@ -3,8 +3,11 @@ package bonch.dev.school.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import bonch.dev.school.R
 import bonch.dev.school.ui.fragments.ChatFragmenst
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction()
             .add(fragmentContainer.id, ChatFragmenst())
             .commit()
+
+        val host: NavHostFragment=fm.findFragmentById(R.id.navFragment) as NavHostFragment? ?:return
+        val navController = host.navController
+
+        val sideBar = findViewById<NavigationView>(R.id.nav_view)
+        sideBar?.setupWithNavController(navController)
+
 
     }
 }

@@ -24,10 +24,12 @@ class ProfileFragment : Fragment() {
         changePasswordButton = view.findViewById(R.id.change_password_button)
         passwordFragment = PasswordFragment()
         changePasswordButton.setOnClickListener {
-            passwordFragment.show(
-                fragmentManager,
-                "passwordFragment"
-            )
+            fragmentManager?.let { it1 ->
+                passwordFragment.show(
+                    it1,
+                    "passwordFragment"
+                )
+            }
         }
 
         return view
