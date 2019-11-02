@@ -1,18 +1,25 @@
 package bonch.dev.school.ui.fragments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.MultiAutoCompleteTextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import bonch.dev.school.R
+import bonch.dev.school.ui.moduls.Message
+import bonch.dev.school.ui.moduls.MessageAdapter
+import java.util.*
 
 class ChatFragmenst : Fragment() {
 
     lateinit var sendMessageButton: ImageButton
+
+    private lateinit var messageRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,12 +27,21 @@ class ChatFragmenst : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.chat_fragmenst_fragment, container, false)
+
+        messageRecyclerView = view.findViewById(R.id.message_recycler_view)
+        messageRecyclerView.layoutManager = LinearLayoutManager(container!!.context)
+        var adapter = MessageAdapter()
+        messageRecyclerView.adapter = adapter
+
         sendMessageButton = view.findViewById(R.id.send_message_button)
         sendMessageButton.setOnClickListener {
-            fragmentManager!!.beginTransaction()
-                .replace(R.id.fragment_container, ProfileFragment())
-                .addToBackStack("profile")
-                .commit()
+            val messageTextViev = view.findViewById<MultiAutoCompleteTextView>(R.id.message_et)
+            val text = messageTextViev.text.toString()
+
+            if(text.replace(" ", "")!="" && text.count()>0)
+                adapter.messageList.add(Message(1, text , Date(), true))
+
+            messageTextViev.text.clear()
         }
 
         return view

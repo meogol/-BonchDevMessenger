@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/chatFragmenst"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chatFragmenst"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="bottom"
     tools:context=".ui.fragments.ChatFragmenst">
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/message_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </view>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/user_message_item"
+        />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light"
         android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:background="@android:color/holo_blue_light"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <MultiAutoCompleteTextView
             android:id="@+id/message_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:hint="Сообщение" />
 
@@ -43,5 +46,4 @@
     </LinearLayout>
 
 
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

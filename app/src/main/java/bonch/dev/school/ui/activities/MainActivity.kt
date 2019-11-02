@@ -19,10 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fragmentContainer = findViewById(R.id.fragment_container)
-        fm.beginTransaction()
-            .add(fragmentContainer.id, ChatFragmenst())
-            .commit()
 
         val host: NavHostFragment=fm.findFragmentById(R.id.navFragment) as NavHostFragment? ?:return
         val navController = host.navController
